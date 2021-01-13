@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+	<div class="container text-center">
+		<div th:if="${book.id==null}">
+			<h1>Create New Product</h1>
+		</div>
+		<div th:unless="${book.id==null}">
+			<h1>Edit Product</h1>
+		</div>
+
+		<form th:action="@{/process_book}" method="post"
+		th:object="${book}" style="max-width:600px;margin:0 auto;">
+		<input type="hidden" th:field="*{id}" th:value="${book.id}" />
+		<div class="m-3">
+				<div class="form-group row">
+					<label class="col-form-label col-4">Name</label>
+					<div class="col-8">
+						<input type="text" class="form-control"  required th:field="*{name}"/>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-4">Description</label>
+					<div class="col-8">
+						<input type="text" class="form-control" minlength="2" maxlength="10" th:field="*{description}"/>
+					</div>
+				</div>
+				
+				<div>
+					<button type="submit" class="btn btn-primary">Register now! </button>
+				</div>
+			</div></form>
+
+	</div>
+</body>
+</html>
